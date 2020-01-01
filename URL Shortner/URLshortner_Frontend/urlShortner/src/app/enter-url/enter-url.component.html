@@ -1,0 +1,33 @@
+<html>
+<div class="container" >
+	<div class="login-container" >
+            <div id="output"></div>
+            <label *ngIf="userLogin" style="color:green" >Welcome {{userName}}</label>
+
+            <!-- <div class="avatar"><img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fd1avok0lzls2w.cloudfront.net%2Fimg_uploads%2Fchanging-urls-0(2).jpg&imgrefurl=https%3A%2F%2Fmoz.com%2Fblog%2Fshould-i-change-my-urls-for-seo&docid=3C_KuoufS7DXuM&tbnid=J4Acigb-ValpXM%3A&vet=10ahUKEwi1xqyfmt_mAhWYbX0KHb1RAvIQMwh6KAAwAA..i&w=300&h=240&bih=669&biw=1296&q=url%20images&ved=0ahUKEwi1xqyfmt_mAhWYbX0KHb1RAvIQMwh6KAAwAA&iact=mrc&uact=8"></div> -->
+            <div class="form-box">
+                <form action="" method="" [formGroup]="urlData" >
+                    <input name="user" type="text" placeholder="Enter URL " formControlName="url"> 
+                    <!-- <label type=text  *ngIf="notLogin">sadasd{{shortenURLresponse.ShortenURL}}</label> -->
+                    <button [disabled]="!urlData.valid" class="btn btn-info btn-block login btn-color" type="submit" (click)="shortURL()" >Short URL</button>
+                </form>
+            </div> 
+        </div>
+        <!-- {{urlData.value|json}} -->
+</div>
+<label *ngIf="userLogin" style="color:red">History...</label>
+<table class="table table-striped" *ngIf="userLogin">
+    <thead>
+      <tr>
+        <th scope="col">URL</th>
+        <th scope="col">ShortenURL</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="msgArrived">
+      <tr *ngFor="let singleURL of message.message.urlData,index as i">
+        <td>{{singleURL.original}}</td>
+        <td>{{singleURL.shorten}}</td>
+      </tr>
+    </tbody>
+  </table>
+</html>
